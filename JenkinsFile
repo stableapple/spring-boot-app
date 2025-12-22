@@ -44,7 +44,7 @@ pipeline {
 
     stage('Build and Push Docker Image') {
       environment {
-        DOCKER_IMAGE = "ci-cd:${BUILD_NUMBER}"
+        DOCKER_IMAGE = "ri25/ci-cd:${BUILD_NUMBER}"
         REGISTRY_CREDENTIALS = credentials('docker-cred')
       }
       steps {
