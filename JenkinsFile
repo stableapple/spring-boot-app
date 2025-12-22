@@ -66,6 +66,7 @@ pipeline {
       steps {
         withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
           sh '''
+            cd spring-boot-app
             git config user.email "riddhi01.menon@gmail.com"
             git config user.name "stableapple"
 
