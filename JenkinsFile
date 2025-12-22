@@ -55,19 +55,15 @@ pipeline {
       }
       steps {
         withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
-          sh '''
-            cd $WORKSPACE
-            echo "Workspace content before git update:"
-            ls -la
+          dir("${WORKSPACE}") {
+            sh '''
             git config user.email "riddhi01.menon@gmail.com"
             git config user.name "stableapple"
-
-            sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" deployment.yml
-
             git add deployment.yml
             git commit -m "Update deployment image to version ${BUILD_NUMBER}"
             git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:master
           '''
+}
         }
       }
     }
