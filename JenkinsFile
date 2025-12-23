@@ -71,6 +71,7 @@ pipeline {
                             git config --global --add safe.directory "*"
                             git config user.email "riddhi01.menon@gmail.com"
                             git config user.name "stableapple"
+                            sed -i "s|image: .*|image: ri25/ci-cd:${BUILD_NUMBER}|g" deployment.yml
                             git add deployment.yml
                             git commit -m "Update deployment image to version ${BUILD_NUMBER}" || echo "No changes to commit"
                             git push https://${GITHUB_TOKEN}@github.com/stableapple/spring-boot-app.git HEAD:master
